@@ -116,7 +116,7 @@ const Minter = () => {
         <h2>Image URI: </h2>
         <input
           type="text"
-          placeholder="e.g. https://ipfs.io/ipfs/zeroTwo..."
+          placeholder="eg: https://ipfs.io/ipfs/zeroTwo... (automatically filled after uploading file)"
           value={
             imageIPFS.length > 0 ? `https://ipfs.io/ipfs/${imageIPFS}` : ``
           }
