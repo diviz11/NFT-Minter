@@ -115,7 +115,7 @@ const Minter = () => {
             onChange={handleFileSelected}
           />
           {loading ? (
-            <img src="../public/Oval.svg" style={{ color: "red" }} />
+            <img src="/Oval.svg" style={{ color: "red" }} />
           ) : (
             <></>
           )}
@@ -144,7 +144,7 @@ const Minter = () => {
       </form>
       <button id="mintButton" onClick={() => onMintPressed()}>
         {loading ? (
-          <img src="../public/Oval.svg" style={{ color: "red" }} />
+          <img src="/Oval.svg" style={{ color: "red" }} />
         ) : (
           "Mint NFT"
         )}
