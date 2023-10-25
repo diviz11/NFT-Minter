@@ -41,19 +41,19 @@ const Minter = () => {
   const mintNFT = async (imageURI, name, description) => {
     // making metadata for the NFT
     setStatus("");
-
-    const metadata = {
-      name: name,
-      image: `https://ipfs.io/ipfs/${imageIPFS}`,
-      description: description,
-    };
-
-    const pinataResponse = await pinJSONToIPFS(metadata);
-    const URI = pinataResponse.pinataUrl;
-    setTokenURI(URI);
-
+    setTokenURI("");
     try {
       setLoading(true);
+      const metadata = {
+        name: name,
+        image: `https://ipfs.io/ipfs/${imageIPFS}`,
+        description: description,
+      };
+
+      const pinataResponse = await pinJSONToIPFS(metadata);
+      const URI = pinataResponse.pinataUrl;
+      setTokenURI(URI);
+
       const txResponse = await writeAsync();
       const tx =
         txResponse && (await waitForTransaction({ hash: txResponse.hash }));
@@ -81,25 +81,21 @@ const Minter = () => {
   const handleFileSelected = async (e) => {
     if (e.target.files) {
       try {
-        setLoading(true)
+        setLoading(true);
         //selecting image file
         const _files = e.target.files[0];
         const blob = new Blob([_files], { type: _files.type });
         const imageURL = URL.createObjectURL(blob);
         setImage(imageURL);
         const data = await pinFileToIPFS(blob);
-        console.log(data);
-        setImageIPFS(data.IpfsHash);//set ipfshash of the image uploaded
+        setImageIPFS(data.IpfsHash); //set ipfshash of the image uploaded
 
-        setLoading(false)
+        setLoading(false);
       } catch (err) {
         throw err;
       }
     }
-    console.log(imageIPFS);
   };
-
-  console.log(imageIPFS);
 
   return (
     <div className="Minter">
@@ -114,19 +110,16 @@ const Minter = () => {
             // style={{ display: "none" }}
             onChange={handleFileSelected}
           />
-          {loading ? (
-            <img src="/Oval.svg" style={{ color: "red" }} />
-          ) : (
-            <></>
-          )}
+          {loading ? <img src="/Oval.svg" style={{ color: "red" }} /> : <></>}
         </div>
         {image.length > 0 && <img src={image} />}
         <h2>Image URI: </h2>
         <input
           type="text"
           placeholder="e.g. https://ipfs.io/ipfs/zeroTwo..."
-          defaultValue={``}
-          value={`https://ipfs.io/ipfs/${imageIPFS}`}
+          value={
+            imageIPFS.length > 0 ? `https://ipfs.io/ipfs/${imageIPFS}` : ``
+          }
           onChange={(event) => setImageURI(event.target.value)}
         />
         <h2>Name: </h2>
@@ -150,8 +143,17 @@ const Minter = () => {
         )}
       </button>
       {status == "Success" && (
-        <a target="_blank" href={`https://goerli.etherscan.io/tx/${txHash}`}>
+        <a
+          target="_blank"
+          href={`https://goerli.etherscan.io/tx/${txHash}`}
+          style={{ marginLeft: "20px" }}
+        >
           Click here to see the transaction
+        </a>
+      )}
+      {tokenURI.length > 0 && (
+        <a target="_blank" href={`${tokenURI}`} style={{ marginLeft: "20px" }}>
+          Click here to see metaData
         </a>
       )}
     </div>
