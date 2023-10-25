@@ -70,7 +70,7 @@ This project utilizes API keys and credentials for services such as Pinata and A
 - [Pinata API](https://pinata.cloud/)
 - [Alchemy](https://alchemyapi.io/)
 
-By using your own API keys and credentials, you not only protect our security and privacy but also ensure a secure and separate environment for your own project. 
+By using your own API keys and credentials, you not only protect your security and privacy but also ensure a secure and separate environment for your own project. 
 
 **Caution**: If you use my API keys or credentials, it may result in unintended errors or issues due to security restrictions.
 
@@ -103,6 +103,6 @@ I would like to acknowledge the limitations and challenges faced during developm
 
 ## Acknowledgements
 
-I would like to extend our gratitude to the [GDSC NITK Recruitments 2023](https://github.com/WebClub-NITK/GDSC-NITK-Recruitments-2023) for providing the recruitment task that inspired this project. 
+I would like to extend my gratitude to the [GDSC NITK Recruitments 2023](https://github.com/WebClub-NITK/GDSC-NITK-Recruitments-2023) for providing the recruitment task that inspired this project. 
 
 Your recruitment task has been a valuable experience for me, and I appreciate the opportunity to showcase my abilities.
